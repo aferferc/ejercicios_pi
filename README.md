@@ -6,8 +6,8 @@ Repositorio con los ejercicios prácticos del módulo de **Proyecto Integrado**.
 
 ### `ansible/` — Automatización con Ansible
 
-- **`ejercicio4/`** — Playbook básico: actualización del sistema, instalación de paquetes, copia de ficheros, uso de templates Jinja2 y gestión de bases de datos MariaDB.
-- **`ejercicio5/`** — Playbook con roles: organización en roles `commons`, `apache2` y `mariadb`, con handlers, templates y ficheros de configuración propios de cada rol.
+- **`ejercicio1/`** — Playbook básico: actualización del sistema, instalación de paquetes, copia de ficheros, uso de templates Jinja2 y gestión de bases de datos MariaDB.
+- **`ejercicio2/`** — Playbook con roles: organización en roles `commons`, `apache2` y `mariadb`, con handlers, templates y ficheros de configuración propios de cada rol.
 
 ### `opentofu/` — Infraestructura como código con OpenTofu + libvirt
 
