@@ -3,18 +3,17 @@ hostname: ej1-server1
 
 timezone: Europe/Madrid
 users:
-  - name: debian
+  - name: ubuntu
     sudo: ALL=(ALL) NOPASSWD:ALL
     groups: users, admin
     shell: /bin/bash
     ssh_authorized_keys:
-      - ssh-ed25519 AAAA... sustituye esta línea por tu clave pública
-
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5zNuHq3VeXwTiovkwySkq+FjQLwE4Ku0pC+ODmJNgOaMPRK3fMTPelfxGkq70y8N16UJoVX/Ks2sGTInA+WbZAUElnEskZYwCpXr6A35kPVepU3cE35aaYg3Cwztr/Fg2I5NH5p3K66qL8doT32Z24rOLjnKLcv13ZykAB08z9GmUndaZMdc30VO3GudwYW5onPHa9PjmEdPeq56b9IaYXuMkl44NPnNr4WFSxZeESKrBad6ZAySQX1AUuIpUBJzXMBs/IPZPpeEZcP/RYMN/SRAnESo5QLjNAAp+EGaWb9kpf89NnUB9WvgQQ8VknSXmq93Gq8/pj3lMmPPx20KDzdyb0fi45acyT2IXROm7L2dCsUY3orcbsSkq6ChN0xDuaK5q0hdoZgn7vuXb2jQfhAVJvoHHmP68Y3atVTrJgFystxRRgEOvsL1lkRq8L/I7JHkgrP3CeoEi2j5Ex3PMXOBQMrfdL3uhNzN4eHFffBhyBTziXru9VnPHo8SdeHs= alfre@ChuwiCorebookX
 
 chpasswd:
   expire: False
   users:
-    - name: debian
+    - name: ubuntu
       password: asdasd
       type: text
 
