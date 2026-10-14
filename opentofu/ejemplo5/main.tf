@@ -91,3 +91,46 @@ resource "libvirt_domain" "ej5-server2" {
     target_type = "serial"
   }
 }
+
+##############################################
+# server3 — Debian (cliente interno)
+##############################################
+
+# Clon ligero sobre la imagen base Debian
+resource "libvirt_volume" "ej5-server3-disk" {
+  name             = "ej5-server3.qcow2"
+  pool             = var.libvirt_pool_name
+  base_volume_name = var.base_image_debian
+  base_volume_pool = var.libvirt_pool_name
+  format           = "qcow2"
+}
+
+# ISO cloud-init con la configuración inicial de server1
+resource "libvirt_cloudinit_disk" "ej5-server3-cloudinit" {
+  name           = "ej5-server3-cloudinit.iso"
+  pool           = var.libvirt_pool_name
+  user_data      = file("${path.module}/cloud-init/user-data3.yaml")
+  network_config = file("${path.module}/cloud-init/network-config3.yaml")
+}
+
+resource "libvirt_domain" "ej5-server3" {
+  name   = "ej5-server3"
+  memory = 1024
+  vcpu   = 2
+
+  network_interface {
+    network_id = libvirt_network.ej5-muy-aislada.id
+  }
+
+  disk { volume_id = libvirt_volume.ej5-server3-disk.id }
+  cloudinit = libvirt_cloudinit_disk.ej5-server3-cloudinit.id
+
+  # Consola serie: las imágenes cloud la esperan (sin ella, algunas, como
+  # Ubuntu, no terminan de arrancar) y permite entrar con "virsh console"
+  # aunque falle la red
+  console {
+    type        = "pty"
+    target_port = "0"
+    target_type = "serial"
+  }
+}

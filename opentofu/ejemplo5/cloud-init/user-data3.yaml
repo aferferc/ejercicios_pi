@@ -1,0 +1,26 @@
+#cloud-config
+hostname: ej5-server3
+
+timezone: Europe/Madrid
+users:
+  - name: debian
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5zNuHq3VeXwTiovkwySkq+FjQLwE4Ku0pC+ODmJNgOaMPRK3fMTPelfxGkq70y8N16UJoVX/Ks2sGTInA+WbZAUElnEskZYwCpXr6A35kPVepU3cE35aaYg3Cwztr/Fg2I5NH5p3K66qL8doT32Z24rOLjnKLcv13ZykAB08z9GmUndaZMdc30VO3GudwYW5onPHa9PjmEdPeq56b9IaYXuMkl44NPnNr4WFSxZeESKrBad6ZAySQX1AUuIpUBJzXMBs/IPZPpeEZcP/RYMN/SRAnESo5QLjNAAp+EGaWb9kpf89NnUB9WvgQQ8VknSXmq93Gq8/pj3lMmPPx20KDzdyb0fi45acyT2IXROm7L2dCsUY3orcbsSkq6ChN0xDuaK5q0hdoZgn7vuXb2jQfhAVJvoHHmP68Y3atVTrJgFystxRRgEOvsL1lkRq8L/I7JHkgrP3CeoEi2j5Ex3PMXOBQMrfdL3uhNzN4eHFffBhyBTziXru9VnPHo8SdeHs= alfre@ChuwiCorebookX
+
+chpasswd:
+  expire: False
+  users:
+    - name: debian
+      password: asdasd
+      type: text
+
+# server2 no tiene salida a Internet: server1 no hace de router (ni reenvío de
+# paquetes ni NAT). Si se dejan estas líneas, cloud-init intenta usar apt en el
+# primer arranque, se queda reintentando y termina con error.
+# Descoméntalas cuando server1 le dé salida al exterior.
+#
+# package_update: true  # refresca índices de apt
+# package_upgrade: true # aplica actualizaciones disponibles en el primer arranque

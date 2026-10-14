@@ -17,3 +17,11 @@ resource "libvirt_network" "ej4-aislada-static" {
   dhcp { enabled = false }
   autostart = true
 }
+
+# Red muy aislada sin DHCP: sin comunicación interna con IP estática
+resource "libvirt_network" "ej4-muy-aislada-static" {
+  name      = "ej4-muy-aislada-static"
+  mode      = "none"
+  dhcp { enabled = false }
+  autostart = true
+}
